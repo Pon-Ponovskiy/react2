@@ -3,7 +3,7 @@ import './Game.css';
 import Result from "./Result";
 
 
-function Game(props){
+function Game(props, step, questions){
 
     if (props.step !== props.questions.length){
 
@@ -12,13 +12,17 @@ function Game(props){
     const questions = props.questions
     const question = questions[props.step]
     const answers = question["variants"]
+    
+    const percentage = Math.round(step / questions * 100)
 
-    console.log(questions)
+
+    // console.log(questions)
 
     return(
         <div>
             <div className="progress">
-                <div className='progress__inner'></div>
+                <div className='progress__inner'
+                style={{width: `${percentage}%`}}></div>
             </div>
             <h1>{question["title"]}</h1>
             <ul>
@@ -26,14 +30,13 @@ function Game(props){
                 <li onClick={() => props.onClickVariant(index)} key={index}>{answer}</li>                 
             ))}
             </ul>
-            
         </div> 
     )
 }
 else{
     return(
         <div>
-            <Result correct={props.correct} lenQuestions={props.questions.length}/>
+            <Result correct={props.correct} lenQuestions={props.questions.length} step={props.step} questions={props.questions}/>
         </div>
     )
 }

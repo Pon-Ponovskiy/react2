@@ -38,7 +38,7 @@ function App(){
 
     return(
         <div className='App' >
-            <Game questions={questions} step={step} onClickVariant={onClickVariant} correct={correct}/>
+            <Game questions={questions} step={step} onClickVariant={onClickVariant} correct={correct} />
             
         </div>
     )
